@@ -1,12 +1,40 @@
 import { faker } from '@faker-js/faker';
 
-describe('Tester de funcionalidad Page', () => {
+const ghostVersion = Cypress.env('GHOST_VERSION');
+const ghostPort = Cypress.env('GHOST_PORT');
+
+describe('Tester de funcionalidad Member', () => {
     beforeEach(() => {
         cy.fixture('userLogin.json').then((user) => {
             cy.visit(user.loginPage)
         })
     })
-    it('Creando un nuevo miembro', () => {
+
+    it('E0005 Añadiendo usuario administrativo como miembro', () => {
+        cy.fixture('userLogin.json').then((user) => {
+            cy.get('#identification').type(user.email)
+            cy.get('#password').type(user.password)
+            cy.get('button[data-test-button="sign-in"]').click()
+            cy.wait(1500)
+            cy.url().should('include', '/dashboard')
+
+            cy.get('a[data-test-nav="members"]').click()
+            cy.wait(1500)
+            cy.url().should('include', '/members')
+
+            cy.get('button[data-test-button="add-yourself"]').click()
+            cy.wait(1500)
+
+            //verificar creación
+            cy.contains('h3', user.userLoginName).should('exist')
+
+            cy.get('button[data-test-button="close-notification"]').click()
+            cy.wait(500)
+            cy.screenshot(`${ghostVersion}/agregar-usuario-administrativo`)
+        })
+    })
+
+    it('E0006 Creando un nuevo miembro', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -19,7 +47,6 @@ describe('Tester de funcionalidad Page', () => {
             cy.url().should('include', '/members')
 
             cy.get('a[data-test-new-member-button]').click()
-            cy.wait(1500)
             cy.url().should('include', '/members/new')
             let memberName = faker.person.fullName()
             cy.get('input[data-test-input="member-name"]').type(memberName)
@@ -31,19 +58,21 @@ describe('Tester de funcionalidad Page', () => {
             cy.wait(1500)
             //verificar creación
             cy.contains('h3', memberName).should('exist')
+
+            cy.screenshot(`${ghostVersion}/nuevo-miembro`)
         })
     })
-    it('Eliminando un miembro', () => {
+    it('E0007 Eliminando un miembro', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
             cy.get('button[data-test-button="sign-in"]').click()
-            cy.wait(1500)
+            cy.wait(2000)
             cy.url().should('include', '/dashboard')
 
             cy.get('a[data-test-nav="members"]').click()
-            cy.wait(1500)
             cy.url().should('include', '/members')
+            cy.wait(1500)
 
             cy.get('table tbody tr').then(($filas) => {
                 const filasAntes = $filas.length
@@ -71,7 +100,35 @@ describe('Tester de funcionalidad Page', () => {
                 })
             })
 
-
+            cy.screenshot(`${ghostVersion}/eliminar-miembro`)
         })
     })
+
+    it('E0008 Eliminando miembro administrador', () => {
+        cy.fixture('userLogin.json').then((user) => {
+            cy.get('#identification').type(user.email)
+            cy.get('#password').type(user.password)
+            cy.get('button[data-test-button="sign-in"]').click()
+            cy.wait(1500)
+            cy.url().should('include', '/dashboard')
+
+            cy.get('a[data-test-nav="members"]').click()
+            cy.wait(1500)
+            cy.url().should('include', '/members')
+
+            cy.get('a[data-test-table-data="details"]').first().click()
+            cy.wait(1500)
+
+            cy.get('button[data-test-button="member-actions"]').click()
+            cy.get('button[data-test-button="delete-member"]').click()
+            cy.get('button[data-test-button="confirm"]').click()
+            cy.url().should('include', '/members')
+
+            // verificar que add-yourself existe
+            cy.get('button[data-test-button="add-yourself"]').should('exist')
+
+            cy.screenshot(`${ghostVersion}/eliminar-miembro-administrador`)
+        })
+    })
+
 })

@@ -1,12 +1,16 @@
 import { faker } from '@faker-js/faker';
 
+
+const ghostVersion = Cypress.env('GHOST_VERSION');
+const ghostPort = Cypress.env('GHOST_PORT');
+
 describe('Tester de funcionalidad page', () => {
     beforeEach(() => {
         cy.fixture('userLogin.json').then((user) => {
             cy.visit(user.loginPage)
         })
     })
-    it('Verificando Inicio de sesión exitoso', () => {
+    it('E0003 Verificando Inicio de sesión exitoso', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -14,9 +18,12 @@ describe('Tester de funcionalidad page', () => {
             cy.wait(1500)
             cy.url().should('include', '/dashboard')
         })
+
+        cy.screenshot(`${ghostVersion}/inicio-sesion-exitoso`)
+
     })
 
-    it('Verificando inicio de sesión fallido', () => {
+    it('E0004 Verificando inicio de sesión fallido', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             let contraseniaMala = faker.internet.password()
@@ -24,5 +31,7 @@ describe('Tester de funcionalidad page', () => {
             cy.get('button[data-test-button="sign-in"]').click()
             cy.get('p[data-test-flow-notification]').should('exist')
         })
+
+        cy.screenshot(`${ghostVersion}/inicio-sesion-fallido`)
     })
 })

@@ -1,5 +1,9 @@
 import { faker } from '@faker-js/faker';
 
+
+const ghostVersion = Cypress.env('GHOST_VERSION');
+const ghostPort = Cypress.env('GHOST_PORT');
+
 describe('Tester de funcionalidad Post', () => {
     beforeEach(() => {
         cy.fixture('userLogin.json').then((user) => {
@@ -7,7 +11,7 @@ describe('Tester de funcionalidad Post', () => {
         })
     })
 
-    it('Creando un nuevo miembro', () => {
+    it('E0011 Creando un nuevo post', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -38,10 +42,12 @@ describe('Tester de funcionalidad Post', () => {
 
             //verificar creación
             cy.contains('h3', postTitle).should('exist')
+
+            cy.screenshot(`${ghostVersion}/nuevo-post`)
         })
     })
 
-    it('Eliminando un post', () => {
+    it('E0012 Eliminando un post', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -80,6 +86,8 @@ describe('Tester de funcionalidad Post', () => {
                     expect(divsDespues).to.equal(divsAntes - 1)
                 })
             })
+
+            cy.screenshot(`${ghostVersion}/eliminar-post`)
         })
     })
 

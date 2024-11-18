@@ -1,10 +1,15 @@
+
+
+const ghostVersion = Cypress.env('GHOST_VERSION');
+const ghostPort = Cypress.env('GHOST_PORT');
+
 describe('Tester de funcionalidad page', () => {
     beforeEach(() => {
         cy.fixture('userLogin.json').then((user) => {
             cy.visit(user.loginPage)
         })
     })
-    it('Creando Page con titulo y contenido', () => {
+    it('E0007 Creando Page con titulo y contenido', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -33,10 +38,12 @@ describe('Tester de funcionalidad page', () => {
                 //verificar creacion
                 cy.contains('h3', page.pageTitle).should('exist')
             })
+
+            cy.screenshot(`${ghostVersion}/nueva-page`)
         })
     })
 
-    it('Creando Page con titulo y sin contenido', () => {
+    it('E0008 Creando Page con titulo y sin contenido', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -66,6 +73,8 @@ describe('Tester de funcionalidad page', () => {
                 //verificar creacion
                 cy.contains('h3', page.pageTitle2).should('exist')
             })
+
+            cy.screenshot(`${ghostVersion}/nueva-page`)
         })
     })
 })

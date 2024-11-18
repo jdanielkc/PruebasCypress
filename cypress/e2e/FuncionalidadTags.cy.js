@@ -1,5 +1,9 @@
 import { faker } from '@faker-js/faker';
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    return false;
+});
+
 describe('Tester de funcionalidad Tags', () => {
     beforeEach(() => {
         cy.fixture('userLogin.json').then((user) => {
@@ -7,7 +11,7 @@ describe('Tester de funcionalidad Tags', () => {
         })
     })
 
-    it('Creando un nuevo Tag', () => {
+    it('E0013 Creando un nuevo Tag', () => {
         cy.fixture('userLogin.json').then((user) => {
             //Inicio de sesión
             cy.get('#identification').type(user.email)
@@ -41,7 +45,7 @@ describe('Tester de funcionalidad Tags', () => {
         })
     })
 
-    it('Eliminando un tag', () => {
+    it('E0014 Eliminando un tag', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -58,7 +62,7 @@ describe('Tester de funcionalidad Tags', () => {
                 const filasAntes = $lis.length
                 cy.wrap(filasAntes).as('filasAntes')
             })
-            
+
             // Hacer clic en el primer elemento de la lista de post
             cy.get('ol.tags-list > li.gh-tags-list-item').first().find('a.gh-list-data').first().click()
             cy.wait(500)

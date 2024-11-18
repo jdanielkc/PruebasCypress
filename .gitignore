@@ -1,5 +1,4 @@
 /node_modules
-
+GhostAnterior/node_modules
 /cypress/videos/*
-
 /cypress/screenshots/*
