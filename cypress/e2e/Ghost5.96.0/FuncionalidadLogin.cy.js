@@ -10,7 +10,7 @@ describe('Tester de funcionalidad page', () => {
             cy.visit(user.loginPage)
         })
     })
-    it('E0003 Verificando Inicio de sesión exitoso', () => {
+    it('E0005 Verificando Inicio de sesión exitoso', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -23,7 +23,7 @@ describe('Tester de funcionalidad page', () => {
 
     })
 
-    it('E0004 Verificando inicio de sesión fallido', () => {
+    it('E0006 Verificando inicio de sesión fallido', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             let contraseniaMala = faker.internet.password()

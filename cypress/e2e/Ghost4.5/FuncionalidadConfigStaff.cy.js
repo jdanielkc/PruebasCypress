@@ -1,11 +1,11 @@
 
-const ghostVersion = Cypress.env('GHOST_VERSION');
+const ghostVersion = Cypress.env('GHOST_VERSION_OLD');
 const ghostPort = Cypress.env('GHOST_PORT');
 
 describe('Tester de funcionalidad staff de config', () => {
     beforeEach(() => {
         cy.fixture('userLogin.json').then((user) => {
-            cy.visit(user.loginPage)
+            cy.visit(user.loginPageOld)
         })
     })
     it('E0001 Modificando el nombre de usuario', () => {

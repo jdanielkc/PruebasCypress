@@ -1,24 +1,59 @@
 # CypressGhost
 
-Pruebas realizadas sobre ghost con kraken-
-
-## En este repositorio están los 15 escenarios y pruebas creadas con la herramienta kraken para la aplicación bajo pruebas ghost
+**Pruebas realizadas sobre ghost con Cypress:** En este repositorio están los 20 escenarios y pruebas creadas con la herramienta Cypress para las dos aplicaciones
 
 # Requisitos:
-
-- Node
-- Ghost
-- Tener un usuario registrado en el aplicativo ghost
-
-## Ambiente donde se comprobó la correcta ejecución:
-
+* Node
+* Ghost
+* Docker
+# Ambiente donde se comprobó la correcta ejecución:
 * SO: _Windows 11_
 * Node.js versión: _v20.18.0_
 * npm versión: _10.9.0_
+# Levantamiento de las imagenes docker de Ghost
+
+## Ghost 5.96.0 (Puerto: 2368)
+
+Para ejecutar Ghost 5.96.0 haciendo uso de docker se pueden correr los siguientes comandos:
+
+```
+docker image pull ghost:5.96.0  
+docker run -d --name Ghost5.96 -e NODE_ENV=development -e url=http://localhost:2368 -p 2368:2368 ghost:5.96.0
+```
+
+Ahora se debe crear el usuario administrador, para ello se debe ingresar a la siguiente url una vez la imagen se haya levantado:
+
+```
+http://localhost:2368/ghost/#/setup
+```
+
+Y se ingresan los siguientes datos:
+* **email:** jd.garciaa1@uniandes.edu.co
+* **password:** Pruebas123*
+
+## Ghost 4.5 (Puerto: 3368)
+
+Para ejecutar Ghost 4.5 haciendo uso de docker se pueden correr los siguientes comandos:
+
+```
+docker image pull ghost:4.5  
+docker run -d --name Ghost4.5 -e NODE_ENV=development -e url=http://localhost:3001 -p 3001:2368 ghost:4.5
+```
+
+Ahora se debe crear el usuario administrador, para ello se debe ingresar a la siguiente url una vez la imagen se haya levantado:
+
+```
+http://localhost:3001/ghost/#/setup
+```
+
+Y se ingresan los siguientes datos:
+* **email:** jd.garciaa1@uniandes.edu.co
+* **password:** Pruebas123*
 
 ## Instalación y ejecución
+Una vez hecho lo anterior ya se tiene el back con las dos aplicaciones bajo prueba listas para las pruebas, para ejecutar estas pruebas puede hacer:
 
-1. Instala las dependencias del proyecto:
+1. Instala las dependencias del proyecto, ubicándose en el directorio raíz ejecutamos:
 
 ```
 npm install
@@ -30,20 +65,47 @@ npm install
 npx cypress open
 ```
 
-# Las 10 funcionalidades de GHOST que se trabajan en esta semana 5 son:
+O si se desea ejecutar sin la interfaz, se ejecuta:
 
-- prueba1 (Crear page)
-- prueba2 (Crear page sin datos)
-- prueba3 (Crear post)
-- prueba4 (Crear post sin datos)
-- prueba5 (Crear miembro)
-- prueba6 (Crear miembro sin datos)
-- prueba7 (Crear tag)
-- prueba8 (Crear tag sin datos)
-- prueba9 (Editar el titulo y la descripcion del sitio)
-- prueba10 (Verificar Edición de titulo y descripcion)
-- prueba11 (Editar el idioma del sitio)
-- prueba12 (Verificar Edición de idioma)
-- prueba13 (Verificar Edición de nombre perfil)
-- prueba14 (Editar la información de un post)
-- prueba15 (Verificar Edición de información de un post)
+```
+npx cypress run --headless
+```
+
+# Funcionalidades Ghost 5.96.0:
+* Funcionalidad ConfigStaff
+    - E0001 Modificación del nombre de usuario
+* Funcionalidad ConfigTiers
+    - E0002 Modificación tier free
+* Funcionalidad Login
+    - E0003 Verificando Inicio de sesión exitoso
+    - E0004 Verificando inicio de sesión fallido
+* Funcionalidad Member
+    - E0005 Añadiendo usuario administrativo como miembro
+    - E0006 Creando un nuevo miembro
+    - E0007 Eliminando un miembro
+    - E0008 Eliminando miembro administrador
+* Funcionalidad Page
+    - E0009 Creando Page con titulo y contenido
+    - E0010 Creando Page con titulo y sin contenido
+* Funcionalidad Post
+    - E0011 Creando un nuevo post
+    - E0012 Eliminando un post
+* Funcionalidad Tags
+    - E0013 Creando un nuevo Tag
+    - E0014 Eliminando un tag
+# Funcionalidades Ghost 4.5:
+* Funcionalidad ConfigStaff
+    - E0001 Modificación del nombre de usuario
+* Funcionalidad ConfigTiers
+    - E0002 Modificación tier free
+* Funcionalidad Member
+    - E0003 Añadiendo usuario administrativo como miembro
+    - E0004 Creando un nuevo miembro
+    - E0005 Eliminando un miembro
+    - E0006 Eliminando miembro administrador
+* Funcionalidad Page
+    - E0007 Creando Page con titulo y contenido
+    - E0008 Creando Page con titulo y sin contenido
+* Funcionalidad Post
+    - E0009 Creando un nuevo post
+    - E0010 Eliminando un post

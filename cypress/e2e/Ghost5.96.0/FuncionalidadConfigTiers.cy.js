@@ -8,7 +8,7 @@ describe('Tester de funcionalidad tiers de config', () => {
             cy.visit(user.loginPage)
         })
     })
-    it('E0002 Modificando tier free', () => {
+    it('E0004 Modificando tier free', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)

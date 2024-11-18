@@ -11,7 +11,7 @@ describe('Tester de funcionalidad Post', () => {
         })
     })
 
-    it('E0011 Creando un nuevo post', () => {
+    it('E0015 Creando un nuevo post', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -47,7 +47,7 @@ describe('Tester de funcionalidad Post', () => {
         })
     })
 
-    it('E0012 Eliminando un post', () => {
+    it('E0016 Eliminando un post', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -88,6 +88,37 @@ describe('Tester de funcionalidad Post', () => {
             })
 
             cy.screenshot(`${ghostVersion}/eliminar-post`)
+        })
+    })
+
+    it('E0017 Editando un post', () => {
+        cy.fixture('userLogin.json').then((user) => {
+            cy.get('#identification').type(user.email)
+            cy.get('#password').type(user.password)
+            cy.get('button[data-test-button="sign-in"]').click()
+            cy.wait(1500)
+            cy.url().should('include', '/dashboard')
+
+            cy.get('a[data-test-nav="posts"]').click()
+            cy.wait(1500)
+            cy.url().should('include', '/posts')
+
+            // Hacer clic en el primer elemento de la lista de post
+            cy.get('div.posts-list li.gh-posts-list-item').first().find('a.gh-list-data').first().click()
+            cy.wait(500)
+
+            let postTitle = faker.lorem.sentence()
+            cy.get('textarea[data-test-editor-title-input]').clear().type(postTitle)
+
+            cy.get('button[data-test-button="publish-save"]').first().click()
+            cy.get('a[href="#/posts/"]').first().click()
+            cy.wait(500)
+            cy.url().should('include', '/posts')
+
+            //verificar edición
+            cy.contains('h3', postTitle).should('exist')
+
+            cy.screenshot(`${ghostVersion}/editar-post`)
         })
     })
 

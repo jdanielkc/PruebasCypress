@@ -10,7 +10,7 @@ describe('Tester de funcionalidad Member', () => {
         })
     })
 
-    it('E0005 Añadiendo usuario administrativo como miembro', () => {
+    it('E0007 Añadiendo usuario administrativo como miembro', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -34,7 +34,7 @@ describe('Tester de funcionalidad Member', () => {
         })
     })
 
-    it('E0006 Creando un nuevo miembro', () => {
+    it('E0008 Creando un nuevo miembro', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -62,7 +62,7 @@ describe('Tester de funcionalidad Member', () => {
             cy.screenshot(`${ghostVersion}/nuevo-miembro`)
         })
     })
-    it('E0007 Eliminando un miembro', () => {
+    it('E0009 Eliminando un miembro', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
@@ -104,7 +104,7 @@ describe('Tester de funcionalidad Member', () => {
         })
     })
 
-    it('E0008 Eliminando miembro administrador', () => {
+    it('E0010 Eliminando miembro administrador', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)

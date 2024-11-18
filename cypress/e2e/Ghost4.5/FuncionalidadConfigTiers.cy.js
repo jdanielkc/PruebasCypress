@@ -1,11 +1,11 @@
 
-const ghostVersion = Cypress.env('GHOST_VERSION');
+const ghostVersion = Cypress.env('GHOST_VERSION_OLD');
 const ghostPort = Cypress.env('GHOST_PORT');
 
 describe('Tester de funcionalidad tiers de config', () => {
     beforeEach(() => {
         cy.fixture('userLogin.json').then((user) => {
-            cy.visit(user.loginPage)
+            cy.visit(user.loginPageOld)
         })
     })
     it('E0002 Modificando tier free', () => {
@@ -57,6 +57,5 @@ describe('Tester de funcionalidad tiers de config', () => {
         cy.get('input[id="description"]').clear()
         cy.get('input[id="description"]').type(tierDescription)
         cy.get('button:contains("Save")').click()
-
     })
 })

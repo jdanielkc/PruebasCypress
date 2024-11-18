@@ -8,7 +8,7 @@ describe('Tester de funcionalidad staff de config', () => {
             cy.visit(user.loginPage)
         })
     })
-    it('E0001 Modificando el nombre de usuario', () => {
+    it('E0003 Modificando el nombre de usuario', () => {
         cy.fixture('userLogin.json').then((user) => {
             cy.get('#identification').type(user.email)
             cy.get('#password').type(user.password)
