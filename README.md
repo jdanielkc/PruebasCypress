@@ -72,27 +72,34 @@ npx cypress run --headless
 ```
 
 # Funcionalidades Ghost 5.96.0:
+* Funcionalidad ConfigNewsletter
+    - E0001 Creando un nuevo newsletter
+    - E0002 Editando un newsletter
 * Funcionalidad ConfigStaff
-    - E0001 Modificación del nombre de usuario
+    - E0003 Modificación del nombre de usuario
 * Funcionalidad ConfigTiers
-    - E0002 Modificación tier free
+    - E0004 Modificación tier free
 * Funcionalidad Login
-    - E0003 Verificando Inicio de sesión exitoso
-    - E0004 Verificando inicio de sesión fallido
+    - E0005 Verificando Inicio de sesión exitoso
+    - E0006 Verificando inicio de sesión fallido
 * Funcionalidad Member
-    - E0005 Añadiendo usuario administrativo como miembro
-    - E0006 Creando un nuevo miembro
-    - E0007 Eliminando un miembro
-    - E0008 Eliminando miembro administrador
+    - E0007 Añadiendo usuario administrativo como miembro
+    - E0008 Creando un nuevo miembro
+    - E0009 Eliminando un miembro
+    - E0010 Eliminando miembro administrador
 * Funcionalidad Page
-    - E0009 Creando Page con titulo y contenido
-    - E0010 Creando Page con titulo y sin contenido
+    - E0011 Creando Page con titulo y contenido
+    - E0012 Creando Page con titulo y sin contenido
+    - E0013 Eliminando una Page
+    - E0014 Editando una Page
 * Funcionalidad Post
-    - E0011 Creando un nuevo post
-    - E0012 Eliminando un post
+    - E0015 Creando un nuevo post
+    - E0016 Eliminando un post
+    - E0017 Editando un post
 * Funcionalidad Tags
-    - E0013 Creando un nuevo Tag
-    - E0014 Eliminando un tag
+    - E0018 Creando un nuevo Tag
+    - E0019 Eliminando un Tag
+    - E0020 Editando un Tag
 # Funcionalidades Ghost 4.5:
 * Funcionalidad ConfigStaff
     - E0001 Modificación del nombre de usuario
