@@ -86,10 +86,8 @@ describe('Tester de funcionalidad Member', () => {
 
         cy.get('li[class="gh-list-row gh-members-list-item "]').first().find('a').first().click()
         cy.get('button:contains("Delete member")').click()
-        cy.get('section.modal-content').should('be.visible')
-        cy.get('section.modal-content').last().within(() => {
-            cy.get('button.gh-btn-red').contains('Delete member').click()
-        })
+        cy.wait(1000)
+        cy.get('button:contains("Delete member")').last().click()
         cy.wait(1500)
 
         cy.get('li[class="gh-list-row gh-members-list-item "').then(($filas) => {
@@ -123,14 +121,13 @@ describe('Tester de funcionalidad Member', () => {
 
             cy.get('li[class="gh-list-row gh-members-list-item "]').first().find('a').first().click()
             cy.get('button:contains("Delete member")').click()
-            cy.get('section.modal-content').should('be.visible')
-            cy.get('section.modal-content').last().within(() => {
-                cy.get('button.gh-btn-red').contains('Delete member').click()
-            })
+            cy.wait(1000)
+            cy.get('button:contains("Delete member")').last().click()
+
             cy.wait(1500)
 
             // verificar que add-yourself existe
-            cy.get('button.gh-btn.gh-btn-green').contains('Add yourself as a member to test').should('exist')
+            cy.get('button').contains('Add yourself as a member to test').should('exist')
 
             cy.screenshot(`${ghostVersion}/eliminar-miembro-administrador`)
         })

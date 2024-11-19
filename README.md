@@ -116,3 +116,7 @@ npx cypress run --headless
 * Funcionalidad Post
     - E0009 Creando un nuevo post
     - E0010 Eliminando un post
+
+# Pruebas de funcionamiento
+
+![Pruebas de funcionamiento](./pruebas-funcionamiento.png)

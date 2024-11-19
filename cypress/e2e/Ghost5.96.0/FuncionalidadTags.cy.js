@@ -4,6 +4,9 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
 
+const ghostVersion = Cypress.env('GHOST_VERSION');
+const ghostPort = Cypress.env('GHOST_PORT');
+
 describe('Tester de funcionalidad Tags', () => {
     beforeEach(() => {
         cy.fixture('userLogin.json').then((user) => {
@@ -42,6 +45,8 @@ describe('Tester de funcionalidad Tags', () => {
             //verificar creación
             cy.get('a[data-test-nav="tags"]').click()
             cy.contains('h3', tagName).should('exist')
+
+            cy.screenshot(`${ghostVersion}/nuevo-tag`)
         })
     })
 
@@ -85,6 +90,8 @@ describe('Tester de funcionalidad Tags', () => {
             })
         })
 
+        cy.screenshot(`${ghostVersion}/eliminar-tag`)
+
     })
 
     it('E0020 Editando un tag', () => {
@@ -118,6 +125,8 @@ describe('Tester de funcionalidad Tags', () => {
 
         //verificar edición
         cy.contains('h3', tagName).should('exist')
+
+        cy.screenshot(`${ghostVersion}/editar-tag`)
     })
 
 })

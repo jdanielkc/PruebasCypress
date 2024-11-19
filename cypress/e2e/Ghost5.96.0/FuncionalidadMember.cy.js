@@ -46,12 +46,13 @@ describe('Tester de funcionalidad Member', () => {
             cy.wait(1500)
             cy.url().should('include', '/members')
 
-            cy.get('a[data-test-new-member-button]').click()
+            cy.get('a:contains("New member")').click()
+            cy.wait(1000)
             cy.url().should('include', '/members/new')
             let memberName = faker.person.fullName()
-            cy.get('input[data-test-input="member-name"]').type(memberName)
-            cy.get('input[data-test-input="member-email"]').type(faker.internet.email())
-            cy.get('input.ember-power-select-trigger-multiple-input').type(faker.word.verb() + '{enter}')
+            cy.get('input[data-test-input="member-name"]').type(memberName, { force: true })
+            cy.get('input[data-test-input="member-email"]').type(faker.internet.email(), { force: true })
+            cy.get('input.ember-power-select-trigger-multiple-input').type(faker.word.verb() + '{enter}', { force: true })
 
             cy.get('button[data-test-button="save"]').click()
             cy.get('a[data-test-nav="members"]').click()

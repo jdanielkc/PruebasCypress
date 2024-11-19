@@ -1,9 +1,10 @@
 const { defineConfig } = require("cypress");
+const setupBrowser = require('./cypress/plugins/index.js');
 
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      setupBrowser(on, config);
     },
     video: true,
     viewportWidth: 1920, // Ancho del viewport

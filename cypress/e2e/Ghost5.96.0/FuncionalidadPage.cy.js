@@ -74,7 +74,7 @@ describe('Tester de funcionalidad page', () => {
                 cy.contains('h3', page.pageTitle2).should('exist')
             })
 
-            cy.screenshot(`${ghostVersion}/nueva-page`)
+            cy.screenshot(`${ghostVersion}/nueva-page-sin-contenido`)
         })
     })
 
@@ -118,7 +118,7 @@ describe('Tester de funcionalidad page', () => {
                 })
             })
 
-            cy.screenshot(`${ghostVersion}/nueva-page`)
+            cy.screenshot(`${ghostVersion}/eliminar-page`)
         })
     })
 
@@ -149,7 +149,7 @@ describe('Tester de funcionalidad page', () => {
             //verificar edicion
             cy.contains('h3', 'Page editada').should('exist')
 
-            cy.screenshot(`${ghostVersion}/nueva-page`)
+            cy.screenshot(`${ghostVersion}/editar-page`)
         })
     })
 })

@@ -4,6 +4,7 @@ const ghostPort = Cypress.env('GHOST_PORT');
 
 describe('Tester de funcionalidad staff de config', () => {
     beforeEach(() => {
+        cy.viewport(1920, 1080);
         cy.fixture('userLogin.json').then((user) => {
             cy.visit(user.loginPageOld)
         })
