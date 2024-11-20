@@ -87,6 +87,7 @@ describe('Tester de funcionalidad Member', () => {
             cy.get('button[data-test-button="member-actions"]').click()
             cy.get('button[data-test-button="delete-member"]').click()
             cy.get('button[data-test-button="confirm"]').click()
+            cy.get('a[data-test-nav="members"]').click()
             cy.url().should('include', '/members')
 
             cy.get('table tbody tr').then(($filas) => {
@@ -127,7 +128,7 @@ describe('Tester de funcionalidad Member', () => {
 
             // verificar que add-yourself existe
             cy.get('button[data-test-button="add-yourself"]').should('exist')
-
+            cy.get('a[data-test-nav="members"]').click()
             cy.screenshot(`${ghostVersion}/eliminar-miembro-administrador`)
         })
     })

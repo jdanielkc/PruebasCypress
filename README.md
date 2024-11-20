@@ -51,6 +51,7 @@ Y se ingresan los siguientes datos:
 * **password:** Pruebas123*
 
 ## Instalación y ejecución
+
 Una vez hecho lo anterior ya se tiene el back con las dos aplicaciones bajo prueba listas para las pruebas, para ejecutar estas pruebas puede hacer:
 
 1. Instala las dependencias del proyecto, ubicándose en el directorio raíz ejecutamos:
@@ -59,7 +60,13 @@ Una vez hecho lo anterior ya se tiene el back con las dos aplicaciones bajo prue
 npm install
 ```
 
-2. Ejecuta Cypress para abrir su interfaz, para ejecutar Cypress localmente usa:
+2. Por facilidad, se configuro todo para generar las pruebas, comparar la imagenes y generar el reporte haciendo uso de un solo comando:
+
+```
+npm run test:comparar
+```
+
+Sin embargo, si desea ejecutar solo las pruebas mediante la interfaz de cypress:
 
 ```
 npx cypress open
@@ -69,6 +76,12 @@ O si se desea ejecutar sin la interfaz, se ejecuta:
 
 ```
 npx cypress run --headless
+```
+
+Para generar el reporte y la comparacion de manera manual, se puede ejecutar en la raiz del proyecto:
+
+```
+node reporte.cjs
 ```
 
 # Funcionalidades Ghost 5.96.0:
@@ -116,7 +129,10 @@ npx cypress run --headless
 * Funcionalidad Post
     - E0009 Creando un nuevo post
     - E0010 Eliminando un post
-
 # Pruebas de funcionamiento
 
 ![Pruebas de funcionamiento](./pruebas-funcionamiento.png)
+
+# Comparación de imágenes haciendo uso de pixelmatch
+
+La generación del reporte y la comparación de imágenes se realiza automáticamente ejecutando los comandos descritos arriba. Y pueden ser consultados en la carpeta **reporte**.

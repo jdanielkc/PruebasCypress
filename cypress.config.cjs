@@ -1,5 +1,5 @@
 const { defineConfig } = require("cypress");
-const setupBrowser = require('./cypress/plugins/index.js');
+const setupBrowser = require('./cypress/plugins/index.cjs');
 
 module.exports = defineConfig({
   e2e: {

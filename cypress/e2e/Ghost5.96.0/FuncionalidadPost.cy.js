@@ -72,6 +72,7 @@ describe('Tester de funcionalidad Post', () => {
             cy.get('button[data-test-psm-trigger]').click()
             cy.get('button[data-test-button="delete-post"]').click()
             cy.get('button[data-test-button="delete-post-confirm"]').click()
+            cy.get('a[data-test-nav="posts"]').click()
             cy.url().should('include', '/posts')
 
             // Contar el número de <div> después de la eliminación
